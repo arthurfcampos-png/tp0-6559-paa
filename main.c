@@ -69,6 +69,22 @@ int main(){
         ImprimeMatriz(&matriz);
 
         break;
+
+    case 4:
+        printf("Digite a quantidade de figuras desejadas:\n");
+        scanf("%d", &num_figuras);
+
+        if (VerificaQntdValida(&num_figuras) == 0){
+            break;
+        }
+
+        InicalizaMatriz(&matriz);
+
+        GeraFigurasAleatorias(&matriz, num_figuras);
+
+        ImprimeMatriz(&matriz);
+
+        break;
     
     default:
         break;
