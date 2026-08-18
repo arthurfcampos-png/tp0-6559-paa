@@ -28,6 +28,8 @@ void GeraEstrela(MatrizDesenho *matriz, int num);
 
 void GeraX(MatrizDesenho *matriz, int num);
 
+void GeraFigurasAleatorias(MatrizDesenho *matriz, int num);
+
 void ImprimeMatriz(MatrizDesenho *matriz);
 
 #endif
