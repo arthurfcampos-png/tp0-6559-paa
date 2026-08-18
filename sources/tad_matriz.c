@@ -20,14 +20,6 @@ void InicalizaMatriz(MatrizDesenho *matriz){
     }
 }
 
-void ImprimeMatriz(MatrizDesenho *matriz){
-    for (int i=0; i<linha_i; i++){
-        for (int j=0; j<coluna_j; j++){
-            printf("%c", matriz -> matriz_desenhos[i][j]);
-        }
-        printf("\n");
-    }
-}
 
 void GeraAsterisco(MatrizDesenho *matriz, int num){
     int max = 100;
@@ -93,5 +85,52 @@ void GeraX(MatrizDesenho *matriz, int num){
         }
 
         max--;
+    }
+}
+
+void GeraFigurasAleatorias(MatrizDesenho *matriz, int num){
+    int max = 100;
+    int count_validos = 0;
+
+    while (count_validos < num && max > 0){
+        int controle_switch = (rand() % 3) + 1;
+        int num_figuras = (rand() % (num/3)) + 1;
+
+        if ((num_figuras + count_validos) > num){
+            num_figuras = num - count_validos;
+        }
+
+        switch (controle_switch){
+
+        case 1:
+            GeraAsterisco(matriz, num_figuras);
+            count_validos += num_figuras;
+            break;
+
+        case 2:
+            GeraEstrela(matriz, num_figuras);
+            count_validos += num_figuras;
+            break;
+        
+        case 3:
+            GeraX(matriz, num_figuras);
+            count_validos += num_figuras;
+            break;
+        
+        default:
+            break;
+        }
+
+        max--;
+    }
+}
+
+
+void ImprimeMatriz(MatrizDesenho *matriz){
+    for (int i=0; i<linha_i; i++){
+        for (int j=0; j<coluna_j; j++){
+            printf("%c", matriz -> matriz_desenhos[i][j]);
+        }
+        printf("\n");
     }
 }
