@@ -22,13 +22,15 @@ typedef struct  MatrizDesenho{
 
 void InicalizaMatriz(MatrizDesenho *matriz);
 
-void GeraAsterisco(MatrizDesenho *matriz, int num);
+void GeraAsterisco(MatrizDesenho *matriz, int num, int min_j, int max_j);
 
-void GeraEstrela(MatrizDesenho *matriz, int num);
+void GeraEstrela(MatrizDesenho *matriz, int num, int min_j, int max_j);
 
-void GeraX(MatrizDesenho *matriz, int num);
+void GeraX(MatrizDesenho *matriz, int num, int min_j, int max_j);
 
-void GeraFigurasAleatorias(MatrizDesenho *matriz, int num);
+void GeraFigurasAleatorias(MatrizDesenho *matriz, int num, int min_j, int max_j);
+
+void GeraEspelhos(MatrizDesenho *matriz, int num);
 
 void ImprimeMatriz(MatrizDesenho *matriz);
 

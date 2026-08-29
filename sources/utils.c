@@ -16,28 +16,27 @@ int VerificaQntdValida(int *num){
 }
 
 
-int VerificaVizinhosEstrela(MatrizDesenho *matriz, int aleatorio_i, int aleatorio_j){
-    if (matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i - 1][aleatorio_j] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i + 1][aleatorio_j] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i][aleatorio_j - 1] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i][aleatorio_j + 1] == vazio){
+int VerificaVizinhos(MatrizDesenho *matriz, int aleatorio_i, int aleatorio_j, int control){
+    if (control==1){ //estrela
+        if (matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i - 1][aleatorio_j] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i + 1][aleatorio_j] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i][aleatorio_j - 1] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i][aleatorio_j + 1] == vazio){
         
-        return 1;
+            return 1;
+        }
     }
 
-    return 0;
-}
-
-
-int VerificaVizinhosX(MatrizDesenho *matriz, int aleatorio_i, int aleatorio_j){
-    if (matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i - 1][aleatorio_j - 1] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i - 1][aleatorio_j + 1] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i + 1][aleatorio_j - 1] == vazio && 
-        matriz -> matriz_desenhos[aleatorio_i + 1][aleatorio_j + 1] == vazio){
+    if (control==2){ //x
+        if (matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i - 1][aleatorio_j - 1] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i - 1][aleatorio_j + 1] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i + 1][aleatorio_j - 1] == vazio && 
+            matriz -> matriz_desenhos[aleatorio_i + 1][aleatorio_j + 1] == vazio){
         
-        return 1;
+            return 1;
+        }
     }
 
     return 0;

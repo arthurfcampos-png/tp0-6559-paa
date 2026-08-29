@@ -4,12 +4,12 @@
 void InicalizaMatriz(MatrizDesenho *matriz){
     for (int i=0; i<linha_i; i++){
         for (int j=0; j<coluna_j; j++){
-            if (i == 0 || i == 19){
+            if (i == 0 || i == linha_i-1){
                 matriz -> matriz_desenhos[i][j] = '-';
 
             }
 
-            else if (j == 0 || j == 79){
+            else if (j == 0 || j == coluna_j-1){
                 matriz -> matriz_desenhos[i][j] = '|';
             }
 
@@ -21,13 +21,13 @@ void InicalizaMatriz(MatrizDesenho *matriz){
 }
 
 
-void GeraAsterisco(MatrizDesenho *matriz, int num){
+void GeraAsterisco(MatrizDesenho *matriz, int num, int min_j, int max_j){
     int max = 100;
     int count_validos = 0;
 
     while (count_validos < num && max > 0){
         int aleatorio_i = (rand() % lsup_i) + 1;
-        int aleatorio_j = (rand() % lsup_j) + 1;
+        int aleatorio_j = (rand() % (max_j - min_j + 1)) + min_j;
         
         if (matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] == vazio){
             matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] = '*';
@@ -39,15 +39,15 @@ void GeraAsterisco(MatrizDesenho *matriz, int num){
     }
 }
 
-void GeraEstrela(MatrizDesenho *matriz, int num){
+void GeraEstrela(MatrizDesenho *matriz, int num, int min_j, int max_j){
     int max = 100;
     int count_validos = 0;
 
     while (count_validos < num && max > 0){
         int aleatorio_i = (rand() % lsup_i) + 1;
-        int aleatorio_j = (rand() % lsup_j) + 1;
+        int aleatorio_j = (rand() % (max_j - min_j + 1)) + min_j;
         
-        if (VerificaVizinhosEstrela(matriz, aleatorio_i, aleatorio_j) == 1){
+        if (VerificaVizinhos(matriz, aleatorio_i, aleatorio_j, 1) == 1){
 
             matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] = '*'; //centro
 
@@ -64,15 +64,15 @@ void GeraEstrela(MatrizDesenho *matriz, int num){
 }
 
 
-void GeraX(MatrizDesenho *matriz, int num){
+void GeraX(MatrizDesenho *matriz, int num, int min_j, int max_j){
     int max = 100;
     int count_validos = 0;
 
     while (count_validos < num && max > 0){
         int aleatorio_i = (rand() % lsup_i) + 1;
-        int aleatorio_j = (rand() % lsup_j) + 1;
+        int aleatorio_j = (rand() % (max_j - min_j + 1)) + min_j;
         
-        if (VerificaVizinhosX(matriz, aleatorio_i, aleatorio_j) == 1){
+        if (VerificaVizinhos(matriz, aleatorio_i, aleatorio_j, 2) == 1){
 
             matriz -> matriz_desenhos[aleatorio_i][aleatorio_j] = '*'; //centro
 
@@ -88,41 +88,59 @@ void GeraX(MatrizDesenho *matriz, int num){
     }
 }
 
-void GeraFigurasAleatorias(MatrizDesenho *matriz, int num){
-    int max = 100;
-    int count_validos = 0;
-
-    while (count_validos < num && max > 0){
+void GeraFigurasAleatorias(MatrizDesenho *matriz, int num, int min_j, int max_j){
+    for (int i=0; i<num; i++){  
         int controle_switch = (rand() % 3) + 1;
-        int num_figuras = (rand() % (num/3)) + 1;
-
-        if ((num_figuras + count_validos) > num){
-            num_figuras = num - count_validos;
-        }
-
+    
         switch (controle_switch){
 
         case 1:
-            GeraAsterisco(matriz, num_figuras);
-            count_validos += num_figuras;
+            GeraAsterisco(matriz, 1, min_j, max_j);
             break;
 
         case 2:
-            GeraEstrela(matriz, num_figuras);
-            count_validos += num_figuras;
+            GeraEstrela(matriz, 1, min_j, max_j);
             break;
         
         case 3:
-            GeraX(matriz, num_figuras);
-            count_validos += num_figuras;
+            GeraX(matriz, 1, min_j, max_j);
             break;
         
         default:
             break;
         }
-
-        max--;
     }
+}
+
+
+void GeraEspelhos(MatrizDesenho *matriz, int num){
+    MatrizDesenho aux;
+
+    InicalizaMatriz(&aux);
+    
+    for (int i=1; i<linha_i-1; i++){
+        aux.matriz_desenhos[i][39] = '|';
+        aux.matriz_desenhos[i][40] = '|';
+    }
+
+    GeraFigurasAleatorias(&aux, num, 1, 38);
+
+    for (int i=1; i<linha_i-1; i++){
+        for (int j=0; j<39; j++){
+            if (aux.matriz_desenhos[i][j] == '*'){
+                int j_espelho = coluna_j - 1 - j;
+
+                matriz -> matriz_desenhos[i][j] = '*';
+                matriz -> matriz_desenhos[i][j_espelho] = '*';
+            }
+        }
+    }
+
+    for (int i=1; i<linha_i-1; i++){
+        matriz -> matriz_desenhos[i][39] = '|';
+        matriz -> matriz_desenhos[i][40] = '|';
+    }
+
 }
 
 

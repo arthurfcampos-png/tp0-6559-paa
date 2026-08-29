@@ -7,8 +7,6 @@
 
 int VerificaQntdValida(int *num);
 
-int VerificaVizinhosEstrela(MatrizDesenho *matriz, int aleatorio_i, int aleatorio_j);
-
-int VerificaVizinhosX(MatrizDesenho *matriz, int aleatorio_i, int aleatorio_j);
+int VerificaVizinhos(MatrizDesenho *matriz, int aleatorio_i, int aleatorio_j, int controle);
 
 #endif
