@@ -3,16 +3,16 @@
 
 int VerificaQntdValida(int *num){
     if (*num <= 0){
-        printf("erro: numero de figuras nao pode ser menor ou igual a zero");
-        return 0;
+        printf("quantidade invalida. gerando um numero aleatorio de figuras\n");
+        *num = (rand() % 100) + 1;
+        printf("%d figuras foram geradas\n", *num);
     }
 
     else if (*num > 100){
         *num = 100;
-        return 1;
     }
 
-    return 1;
+    return *num;
 }
 
 
