@@ -22,7 +22,7 @@ void InicalizaMatriz(MatrizDesenho *matriz){
 
 
 void GeraAsterisco(MatrizDesenho *matriz, int num, int min_j, int max_j){
-    int max = 100;
+    int max = 150;
     int count_validos = 0;
 
     while (count_validos < num && max > 0){
@@ -40,7 +40,7 @@ void GeraAsterisco(MatrizDesenho *matriz, int num, int min_j, int max_j){
 }
 
 void GeraEstrela(MatrizDesenho *matriz, int num, int min_j, int max_j){
-    int max = 100;
+    int max = 150;
     int count_validos = 0;
 
     while (count_validos < num && max > 0){
@@ -65,7 +65,7 @@ void GeraEstrela(MatrizDesenho *matriz, int num, int min_j, int max_j){
 
 
 void GeraX(MatrizDesenho *matriz, int num, int min_j, int max_j){
-    int max = 100;
+    int max = 150;
     int count_validos = 0;
 
     while (count_validos < num && max > 0){

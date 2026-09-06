@@ -3,7 +3,7 @@
 
 int VerificaQntdValida(int *num){
     if (*num <= 0){
-        printf("quantidade invalida. gerando um numero aleatorio de figuras\n");
+        printf("gerando um numero aleatorio de figuras\n");
         *num = (rand() % 100) + 1;
         printf("%d figuras foram geradas\n", *num);
     }
